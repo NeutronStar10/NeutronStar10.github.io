@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12" style="background-color: #ccc">
+            <form role="form">
+                <ul style="list-style: none">
+                    <li style="float: left" class="dropdown {{status}}">
+                        <div class="form-group has-feedback" style="padding: 15px 10px; padding-right: 0px">
+                            <label>
+                               <input type="text" ng-model="gameFilt" placeholder="Search" ng-keyup="setStatList(true)" class="form-control">
+                            </label>
+                        </div>
+                        <div class="dropdown-menu" style="margin-top: -35px; margin-left: 10px; background-color: #eee">
+                            <ul style="list-style: none; margin-left: -41px;" class="search">
+                                <li class="{{hoverList[n]}} pointer" style="border-bottom: 1px solid #aaa; padding: 5px 5px" ng-repeat="n in indexList" ng-click="itemClicked(n)" ng-class="{active: isKeyboardSelected(n)}"><span style="display: inline-block; width: 220px"><strong>{{dropdownList[n].game}}</strong></span></li>
+                            </ul>
+                        </div>
+                    </li> 
+                    <li style="float: left">
+                        <button style="margin-top: 16px; font-size: 18.7px; border-radius: 0px;" class="btn btn-danger" ng-click="generateArticles(false)"><span class="glyphicon glyphicon-search" ></span></button>
+                    </li>
+                    <li style="float: left">
+                        <div class="form-group" style="padding: 24px 25px">
+                            <label>
+                                Filter By: <select ng-model="typeFilt" placeholder="Choose Type">
+                                    <option> </option>
+                                    <option>Discussion</option>
+                                    <option>Throwback</option>
+                                    <option>Blog</option>
+                                </select>    
+                            </label>
+                        </div>
+                    </li>
+                </ul>    
+            </form>
+        </div>
+        <div class="col-xs-12" style="padding: 20px; background-color: #666">
+            <ul class="media-list tab-pane fade in active">
+                <li class = "media border-soft" ng-repeat = "game in filteredArticleList | filter: typeFilt" style="background-color: #ccc; padding: 10px">
+                    <div class="media-left media-middle">
+                        <img class="media-object img-thumbnail article-size" ng-src="./images/article%20pics/{{game.img_path}}" alt="image">                            </div>    
+                                    <div class="media-body">
+                                        <h2 class="media-heading">{{game.title}} <span class="label label-danger" style="font-size: 40%">{{game.type}}</span></h2><br>
+                                        <p>{{game.description}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+        </div>
+    </div>    
+</div>
